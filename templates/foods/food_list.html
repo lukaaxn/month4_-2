@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for food in foods%}
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">name: {{ food.name }}</h5>
+    <p class="card-text">price: {{ food.price }}</p>
+    <a href="/foods/{{ food.id }}" class="btn btn-primary">В корзину</a>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+# Python / Django
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+env/
+venv/
+.env
+*.sqlite3
+db.sqlite3
+*.log
+
+# Django media/static
+/static/
+/media/
+media/
+uploads/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Видео (пример)
+*.mp4
+*.mov
+*.avi
+*.mkv
+/videos/
