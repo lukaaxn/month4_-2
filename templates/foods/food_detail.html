@@ -2,11 +2,15 @@
 
 {% block content %}
 <div class="card" style="width: 18rem;">
+    {% if food.photo %}
     <img src="{{food.photo.url}}" class="card-img-top" alt="...">
+    {% else %}
+    <img src="../../static/images.png" class="card-img-top" alt="...">
+    {% endif %}
     <div class="card-body">
-        <h5 class="card-title">name: {{ food.name }}</h5>
-        <p class="card-text">discription: {{ food.description }}</p>
+         <h5 class="card-title">name: {{ food.name }}</h5>
         <p class="card-text">price: {{ food.price }}</p>
+        <a href="/foods/{{food.id}}/" class="btn btn-primary">В корзину</a>
     </div>
 </div>
 {% endblock content %}

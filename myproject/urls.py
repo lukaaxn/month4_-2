@@ -26,5 +26,6 @@ urlpatterns = [
     path('', food.views.home),
     path('foods/', food.views.food_list),
     path('foods/<int:food_id>/', food.views.food_detail),
+    path('foods/create/', food.views.food_create_view),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -17,12 +17,6 @@ class Category(models.Model):
     def __str__(self):
        return f"{self.name}"
 
-
-
-
-
-
-
 class Food(models.Model):
     photo = models.ImageField(blank=True, null=True, upload_to='food/')     
     name = models.CharField(max_length=100)
@@ -31,7 +25,6 @@ class Food(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
-    
 
     def __str__(self):
        return f"{self.name}"
