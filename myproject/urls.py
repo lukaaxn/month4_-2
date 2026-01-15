@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
 import food.views
 
 urlpatterns = [
@@ -23,4 +26,5 @@ urlpatterns = [
     path('', food.views.home),
     path('foods/', food.views.food_list),
     path('foods/<int:food_id>/', food.views.food_detail),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

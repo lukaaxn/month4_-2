@@ -7,8 +7,12 @@ from .models import Food
 select * from food;
 """
 
+# food = """
+#     select * from product where name = '{user_input}';
+# """
+
 """
-select * from food ILIKE where "%phone%"
+select * from food ILIKE where "%free%"
 """
 
 def home(request):
