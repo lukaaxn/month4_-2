@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
 {% for food in foods%}
 <div class="card" style="width: 18rem;">
     {% if food.photo %}
@@ -10,9 +15,18 @@
     {% endif %}
     <div class="card-body">
          <h5 class="card-title">name: {{ food.name }}</h5>
+         <h6 class="card-text">description: {{ food.description }}</h6>
         <p class="card-text">price: {{ food.price }}</p>
         <a href="/foods/{{food.id}}/" class="btn btn-primary">В корзину</a>
     </div>
 </div>
 {% endfor %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% for i in max_page %}
+        <li class="page-item"><a class="page-link" href="/foods/?page={{i}}">{{i}}</a></li>
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="/foods/">Назад</a></li>
+    </ul>
+</nav>
 {% endblock content %}
