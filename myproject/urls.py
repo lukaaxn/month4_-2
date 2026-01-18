@@ -20,12 +20,24 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import food.views
+from users.views import register_view, login_view, logout_view
+user_patterns = [
+    path('register/', register_view),
+    path('login/', login_view),
+    path('logout/', logout_view),
+]
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', food.views.home),
-    path('foods/', food.views.food_list),
-    path('foods/<int:food_id>/', food.views.food_detail),
-    path('foods/create/', food.views.food_create_view),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns = (
+    user_patterns
+    + [
+        path('admin/', admin.site.urls),
+        path('', food.views.home),
+        path('foods/', food.views.food_list),
+        path('foods/<int:food_id>/', food.views.food_detail),
+        path('foods/create/', food.views.food_create_view),
+    ] 
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
+
 

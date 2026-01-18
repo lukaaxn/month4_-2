@@ -1,8 +1,8 @@
+from django.contrib.auth.decorators import login_required 
 from django.http import HttpResponse
 from django.shortcuts import render
 
 from .form import FoodForm
-
 from .models import Food
 
 # Create your views here.
@@ -10,11 +10,9 @@ from .models import Food
 """
 select * from food;
 """
-
 # food = """
 #     select * from food where name = '{user_input}';
 # """
-
 """
 select * from food ILIKE where "%free%"
 """
@@ -22,7 +20,6 @@ select * from food ILIKE where "%free%"
 """
 insert into food (name, description, price) values ('name', 'description', 500);
 """
-
 
 # GET - для просмотра данных
 # POST - для отправки данных
@@ -35,20 +32,23 @@ def home(request):
     if request.method == 'GET':
         return render(request, 'base.html')
 
-
+@login_required(login_url='/login/')
 def food_list(request):
     if request.method == 'GET':
         foods = Food.objects.all()
-        return render(request, 'foods/food_list.html', context={'foods': foods})
-    
+        return render(
+            request, 'foods/food_list.html', context={'foods': foods}
+        )
 
+@login_required(login_url='/login/')
 def food_detail(request, food_id):
     if request.method == 'GET':
         food = Food.objects.filter(id=food_id).first()
         return render(
             request, 'foods/food_detail.html', context={'food': food}
         )
-    
+
+@login_required(login_url='/login/')
 def food_create_view(request):
     if request.method == 'GET':
         form = FoodForm()
