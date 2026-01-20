@@ -1,26 +1,26 @@
 from django import forms
 
-from .models import Category, Tag
+from .models import Genre, Tag
 
 
-class FoodForm(forms.Form):
-    name = forms.CharField(max_length=50, min_length=3)
+class MovieForm(forms.Form):
+    title = forms.CharField(max_length=50, min_length=3)
     description = forms.CharField(max_length=150)
-    price = forms.IntegerField()
-    photo = forms.ImageField()
+    ticket_price = forms.IntegerField()
+    poster = forms.ImageField()
 
 
 class SearchForm(forms.Form):
     ordering = [
         ('created_at', 'Created_At'), 
         ('updated_at', 'Updated_At'), 
-        ('price', 'Price'), 
-        ('name', 'Name'),
+        ('ticket_price', 'Price'), 
+        ('title', 'Title'),
         ('-created_at', 'Created_At(descinding)'), 
         ('-updated_at', 'Updated_At(descinding)'), 
     ]
     search = forms.CharField(max_length=100, required=False)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), required=False)
+    genre = forms.ModelChoiceField(queryset=Genre.objects.all(), required=False)
     tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)
     ordering = forms.ChoiceField(choices=ordering, required=False)
 
