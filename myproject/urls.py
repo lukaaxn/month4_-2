@@ -19,12 +19,12 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-import cinema.views
+import food.views
 from users.views import register_view, login_view, logout_view
 user_patterns = [
     path('register/', register_view),
     path('login/', login_view),
-    path('logout/', logout_view),
+    path('logout/', logout_view)
 ]
 
 
@@ -32,11 +32,12 @@ urlpatterns = (
     user_patterns
     + [
         path('admin/', admin.site.urls),
-        path('', cinema.views.home),
-        path('movies/', cinema.views.movie_list),
-        path('movies/<int:movie_id>/', cinema.views.movie_detail),
-        path('movies/create/', cinema.views.movie_create_view),
-        path('movies/<int:movie_id>/delete/', cinema.views.movie_delete_view),
+        path('', food.views.home),
+        path('foods/', food.views.food_list),
+        path('foods/<int:food_id>/', food.views.food_detail),
+        path('foods/create/', food.views.food_create_view),
+        path('foods/<int:food_id>/delete/', food.views.food_delete_view),
+        path('foods/<int:food_id>/add-to-cart/', food.views.add_to_cart_view),
     ] 
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )

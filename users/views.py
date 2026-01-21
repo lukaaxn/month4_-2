@@ -29,8 +29,11 @@ def login_view(request):
         forms_obj = LoginForm(request.POST)
         if forms_obj.is_valid():
             user = authenticate(**forms_obj.cleaned_data)
-            login(request, user)
-            return HttpResponse('User logged in')
+            if user is not None:
+                login(request, user)
+                return HttpResponse('User logged in')
+            else:
+                return HttpResponse('Неверный логин или пароль')
         
 @login_required(login_url='/login/')
 def logout_view(request):

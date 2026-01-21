@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    {% if food.photo %}
+    <img src="{{food.photo.url}}" class="card-img-top" alt="...">
+    {% else %}
+    <img src="../../static/images.png" class="card-img-top" alt="...">
+    {% endif %}
+    <div class="card-body">
+         <h5 class="card-title">title: {{ food.title }}</h5>
+        <p class="card-text">price: {{ food.price }}</p>
+        <a href="/foods/{{food.id}}/delete/" class="btn btn-danger">Удалить</a>
+            <a href="/foods/{{food.id}}/add-to-cart/" class="btn btn-success" style="margin-left: 10px;">В корзину</a>
+    </div>
+</div>
+{% endblock content %}
